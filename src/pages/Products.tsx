@@ -37,7 +37,7 @@ function Products() {
   }, [productDispatch, notify]);
 
   return (
-    <Flex flexWrap={"wrap"} gap={7}>
+    <Flex pb={"250px"} justifyContent={"center"} flexWrap={"wrap"} gap={7}>
       {products.map((product) => (
         <Product key={product.id} product={product} />
       ))}

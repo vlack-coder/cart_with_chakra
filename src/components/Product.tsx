@@ -14,13 +14,13 @@ import {
   IconButton,
   Image,
   Text,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import {
   decreaseCartItem,
-  increaseCartItem
+  increaseCartItem,
 } from "../context/actions/cartActions";
 import { CartContext } from "../context/CartProvider";
 import { cartType } from "../context/initialState/cartInitialState";
@@ -56,8 +56,10 @@ function Product(props: Productprops) {
   const { price, description, image, name } = props.product;
   return (
     <Flex
+      // minHeight={0}
       height={"440px"}
-      width={"240px"}
+      // width={["240px", "80%", "80%"]}
+      width={["85%", "240px"]}
       boxShadow={"md"}
       //   boxSize="400px"
       flexDirection={"column"}
@@ -65,8 +67,14 @@ function Product(props: Productprops) {
       cursor="pointer"
       borderRadius={"lg"}
     >
-      <Center borderTopRadius={"lg"} bgColor={"#F8F8F8"} boxSize="240px">
-        <Image src={image} boxSize="230px" />
+      <Center
+        borderTopRadius={"lg"}
+        pb={[2, 3]}
+        bgColor={"#F8F8F8"}
+        // height={["100%", "240px"]}
+        height={["240px"]}
+      >
+        <Image width={"100%"} borderTopRadius={"lg"} src={image} height={["240px"]} />
       </Center>
 
       <Flex flex={1} px={4} pt={3} pb={5} flexDir={"column"}>

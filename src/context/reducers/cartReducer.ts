@@ -66,13 +66,13 @@ const cartReducer = (
     case cartAction.CLOSE_CART:
       return {
         ...state,
-        isOpen: true,
+        isOpen: false,
       };
     case cartAction.INCREASE_CART_ITEM:
       const inCart = state.carts.find(
         (item: any) => item.id === action.payload.id
       );
-      console.log("inCart", inCart);
+
       return {
         ...state,
         carts: inCart
@@ -87,7 +87,6 @@ const cartReducer = (
       const insCart = state.carts.find((item: any) =>
         item.id === action.payload.id ? true : false
       );
-      console.log("e don appen");
 
       return {
         ...state,
@@ -100,30 +99,6 @@ const cartReducer = (
               )
             : state.carts.filter((cart: any) => cart.id !== action.payload.id),
       };
-    // case cartAction.INCREASE_CART_ITEM:
-    //   const cartClone = [...state.carts];
-    //   const inCartIndex = state.carts.findIndex((item: any) =>
-    //     item.id === action.payload.id ? true : false
-    //   );
-    //   console.log("inCartIndex", inCartIndex);
-    //   console.log("e reach here");
-
-    //   return {
-    //     ...state,
-    //     carts:
-    //       inCartIndex >= 0
-    //         ? (cartClone[inCartIndex] = action.payload)
-    //         : [...cartClone, { ...action.payload, orderedQuantity: 1 }],
-    //   };
-
-    // case cartAction.DECREASE_CART_ITEM:
-    //   return {
-    //     ...state,
-    //   };
-    // case cartAction.REMOVE_FROM_CART:
-    //   return {
-    //     ...state,
-    //   };
 
     default:
       return state;

@@ -1,4 +1,5 @@
 import { ChakraProvider, Container, theme } from "@chakra-ui/react";
+import CustomDrawer from "./components/CustomDrawer";
 import Nav from "./components/Nav";
 import CartProvider from "./context/CartProvider";
 import ProductProvider from "./context/Provider";
@@ -12,6 +13,7 @@ export const App = () => (
         <Container maxW={"6xl"} centerContent={true} pt={10}>
           <Products />
         </Container>
+        <CustomDrawer />
       </CartProvider>
     </ProductProvider>
   </ChakraProvider>

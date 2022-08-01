@@ -1,11 +1,4 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  ApolloLink,
-  from,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+import { ApolloClient, from, HttpLink, InMemoryCache } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 
 export const createGQLClient = () => {
@@ -13,23 +6,24 @@ export const createGQLClient = () => {
     resultCaching: false,
     addTypename: false,
   });
-
   const httpLink = new HttpLink({
-    uri: "http://localhost:5000/graphql",
+    uri: "https://graphql-mock-app.herokuapp.com",
+    // uri: "http://localhost:5001/",
   });
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     console.log(`werkin`);
-    if (graphQLErrors)
+    if (graphQLErrors) {
       graphQLErrors.forEach(({ message, locations, path }) =>
         console.log(
           `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
         )
       );
-
+      // throw graphQLErrors;
+    }
     if (networkError) {
       console.log(`[Network error]: ${networkError}`);
-      throw networkError;
+      // throw networkError;
       // throw new Error("bad network");
     }
     // if (networkError) console.log(`[Network error]: ${networkError}`);
@@ -55,12 +49,16 @@ export const createGQLClient = () => {
         variables,
         fetchPolicy: "no-cache",
       })
-      .then(({ data }) => {
-        // console.log("data", data);
-        return data[name];
+      .then((res) => {
+        if (res.errors) {
+          throw res.errors;
+        }
+        return res.data[name];
       })
       .catch((e) => {
-        throw e;
+        // throw e;
+        console.log("esw", e);
+        throw e
       });
   };
 
@@ -71,7 +69,10 @@ export const createGQLClient = () => {
         variables,
       });
       const { data, errors } = response || {};
-      // if()
+      console.log("errors", errors);
+      // if(errors){
+      //   throw errors
+      // }
       return data[name];
     } catch (error) {
       console.log(`e`, { error });
@@ -81,8 +82,3 @@ export const createGQLClient = () => {
 
   return { query, mutate };
 };
-
-// export default GraphQLClient = {
-//   query,
-//   mutate,
-// };

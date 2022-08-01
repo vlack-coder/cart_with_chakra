@@ -9,7 +9,7 @@ export const CREATE_USER = gql`
 `;
 export const GET_PRODUCTS = gql`
   query {
-    allProducts {
+    getProducts {
       id
       name
       description

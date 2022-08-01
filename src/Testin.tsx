@@ -9,7 +9,7 @@ function Testin() {
   
   useEffect(() => {
     console.log("gggg");
-    getProducts()(productDispatch)
+    // getProducts()(productDispatch)
   }, [])
   
 

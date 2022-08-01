@@ -12,14 +12,15 @@ import {
   DrawerOverlay,
   Flex,
   IconButton,
-  Image, Text,
-  useDisclosure
+  Image,
+  Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import {
   decreaseCartItem,
-  increaseCartItem
+  increaseCartItem,
 } from "../context/actions/cartActions";
 import { CartContext } from "../context/CartProvider";
 import { cartType } from "../context/initialState/cartInitialState";
@@ -48,7 +49,7 @@ function Product(props: Productprops) {
     increaseCount(product);
     onOpen();
   };
-  console.log("carts", carts);
+  // console.log("carts", carts);
   const total = carts.reduce(
     (acc, cart) => cart.orderedQuantity * cart.price + acc,
     0
@@ -187,8 +188,8 @@ function Product(props: Productprops) {
               <Text fontSize={20} fontWeight="bold">
                 Total
               </Text>
-              <Text fontSize={19} fontWeight={"extrabold"}>
-                {total}
+              <Text fontSize={21} fontWeight={"extrabold"}>
+                ₦{total}
               </Text>
             </Flex>
             {/* <Flex px={5}> */}

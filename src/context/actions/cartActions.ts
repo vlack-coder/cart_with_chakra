@@ -3,11 +3,8 @@ import { cartType } from "../initialState/cartInitialState";
 import { cartAction, product } from "../reducers/cartReducer";
 
 const {
-  CLOSE_CART,
   DECREASE_CART_ITEM,
   INCREASE_CART_ITEM,
-  OPEN_CART,
-  REMOVE_FROM_CART,
 } = cartAction;
 
 export const increaseCartItem =

@@ -1,5 +1,5 @@
 import { Flex, useToast } from "@chakra-ui/react";
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import Product from "../components/Product";
 import { getProducts } from "../context/actions/productActions";
 import { ProductContext } from "../context/Provider";
@@ -14,22 +14,27 @@ function Products() {
     productDispatch,
   } = productCont;
   // console.log('productState', productState)
-  const notify = (e: any) =>
-    toast({
-      title: e.message,
-      description: "Bad Request",
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-    });
+  
+  
+  const notify = useCallback(
+    () => (e: any) =>
+      toast({
+        title: e.message,
+        description: "Bad Request",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      }),
+    [toast]
+  );
 
   useEffect(() => {
     console.log("gggg");
-    getProducts(notify)(productDispatch).catch(
-      (e: any) => console.log("e", e.error.message)
+    getProducts(notify())(productDispatch).catch(
+      (e: any) => console.log("e", e.message)
       // notify()
     );
-  }, []);
+  }, [productDispatch, notify]);
 
   return (
     <Flex flexWrap={"wrap"} gap={7}>

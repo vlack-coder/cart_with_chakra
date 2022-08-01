@@ -14,13 +14,13 @@ import {
   IconButton,
   Image,
   Text,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import {
   decreaseCartItem,
-  increaseCartItem,
+  increaseCartItem
 } from "../context/actions/cartActions";
 import { CartContext } from "../context/CartProvider";
 import { cartType } from "../context/initialState/cartInitialState";
@@ -38,7 +38,6 @@ function Product(props: Productprops) {
     cartState: { carts },
     cartDispatch,
   } = cartCont;
-  const btnRef = React.useRef();
   const increaseCount = (cart: product | cartType) => {
     increaseCartItem(cart)(cartDispatch);
   };
@@ -54,7 +53,7 @@ function Product(props: Productprops) {
     (acc, cart) => cart.orderedQuantity * cart.price + acc,
     0
   );
-  const { price, description, image, name, sku } = props.product;
+  const { price, description, image, name } = props.product;
   return (
     <Flex
       height={"440px"}

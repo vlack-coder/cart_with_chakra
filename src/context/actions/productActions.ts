@@ -2,7 +2,7 @@ import { createGQLClient } from "../../Graphql/GraphQlClient";
 import { GET_PRODUCTS } from "../../Graphql/Queries";
 import { productAction } from "../reducers/productReducer";
 
-const { GET_PRODUCTS_REQUEST, GET_PRODUCTS_SUCCESS } = productAction;
+const { GET_PRODUCTS_SUCCESS } = productAction;
 // export const getProducts = async (): Promise<product[]> => {
 //   return productsData;
 // };
@@ -36,6 +36,6 @@ export const getProducts =
     } catch (error) {
       console.log("errorrr", { error });
       fn(error);
-      throw { error };
+      throw error ;
     }
   };
